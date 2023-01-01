@@ -6,14 +6,10 @@ from setuptools import find_packages, setup
 here = os.path.abspath(os.path.dirname(__file__))
 
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
-    long_description = "\n" + fh.read()
+    LONG_DESCRIPTION = "\n" + fh.read()
 
-VERSION = "1.0.0"
+VERSION = "1.0.2"
 DESCRIPTION = "Optimised way to write in Excel files."
-LONG_DESCRIPTION = "This library optimises the cells in Excel files to fit the text. \
-This feature is not provided by default by pandas and is a important feature. \
-This library also can be used to append excel files without having to worry about \
-engines."
 
 with open("requirements.txt") as f:
     required = f.read().splitlines()
