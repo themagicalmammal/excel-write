@@ -15,6 +15,9 @@ This feature is not provided by default by pandas and is a important feature. \
 This library also can be used to append excel files without having to worry about \
 engines."
 
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
+
 # Setting up
 setup(
     name="excel-write",
@@ -25,7 +28,7 @@ setup(
     long_description_content_type="text/markdown",
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
-    install_requires=[],
+    install_requires=required,
     keywords=["python", "excel", "pandas", "excel-write", "write"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
