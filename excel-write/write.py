@@ -3,11 +3,12 @@
 Description: Simple way to write in Excel
 """
 
-import pandas as pd
 import functools
 import os.path
-import openpyxl.utils.cell
 from decimal import Decimal
+
+import openpyxl.utils.cell
+import pandas as pd
 
 
 def write_in_excel(df, location, sheet, index=False):
@@ -25,28 +26,33 @@ def write_in_excel(df, location, sheet, index=False):
     """
     try:
         if not os.path.isfile(location):
-            writer = pd.ExcelWriter(location, engine='xlsxwriter')
+            writer = pd.ExcelWriter(location, engine="xlsxwriter")
             df.to_excel(writer, sheet_name=sheet, index=index)
             auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
             worksheet = writer.sheets[sheet]  # pull worksheet object
             worksheet.freeze_panes(1, 0)
             for idx, col in enumerate(df):  # loop through all columns
                 series = df[col]
-                max_len = max((
-                    series.astype(str).map(len).max(),  # len of largest item
-                    len(str(series.name))  # len of column name/header
-                )) + 1  # adding a little extra space
+                max_len = (
+                    max((
+                        series.astype(str).map(
+                            len).max(),  # len of largest item
+                        len(str(series.name)),  # len of column name/header
+                    )) + 1)  # adding a little extra space
                 if max_len > 50:
                     max_len = 50
                     worksheet.set_column(idx, idx, max_len)  # set column width
                     writer.close()
         else:
-            with pd.ExcelWriter(location, mode='a', engine='openpyxl', if_sheet_exists='replace') as writer:
+            with pd.ExcelWriter(location,
+                                mode="a",
+                                engine="openpyxl",
+                                if_sheet_exists="replace") as writer:
                 df.to_excel(writer, sheet_name=sheet, index=index)
                 auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
                 # Helps in case if the Excel is already in access mode somewhere else
     except PermissionError:
-        print(f'Failed to save {location} : Try closing excel doc')
+        print(f"Failed to save {location} : Try closing excel doc")
     except Exception as e:
         print(e)
 
@@ -80,20 +86,20 @@ def find_float_length(v, decimals=3):
     :param int decimals: The amount of decimal points
     """
 
-    if isinstance(v, float):    # Round to [decimal] places
-        return str(Decimal(v).quantize(Decimal('1.' + '0' * decimals)).normalize())
+    if isinstance(v, float):  # Round to [decimal] places
+        return str(
+            Decimal(v).quantize(Decimal("1." + "0" * decimals)).normalize())
     else:
         return str(v)
 
 
-def auto_adjust_excel_width(
-        df,
-        writer,
-        sheet_name,
-        margin=3,
-        length_factor=1.0,
-        decimals=3,
-        index=True):
+def auto_adjust_excel_width(df,
+                            writer,
+                            sheet_name,
+                            margin=3,
+                            length_factor=1.0,
+                            decimals=3,
+                            index=True):
     """
     Auto adjust column width to fit content in a XLSX exported from a pandas DataFrame.
 
@@ -115,22 +121,26 @@ def auto_adjust_excel_width(
     set index=False here!)
     """
     writer_type = type(
-        writer.book).__module__  # e.g. 'xlsxwriter.workbook' or 'openpyxl.workbook.workbook'
-    is_openpyxl = writer_type.startswith('openpyxl')
-    is_xlsxwriter = writer_type.startswith('xlsxwriter')
+        writer.book
+    ).__module__  # e.g. 'xlsxwriter.workbook' or 'openpyxl.workbook.workbook'
+    is_openpyxl = writer_type.startswith("openpyxl")
+    is_xlsxwriter = writer_type.startswith("xlsxwriter")
     to_str = functools.partial(find_float_length, decimals=decimals)
     """
     Like str() but rounds decimals to predefined length
     """
     if not is_openpyxl and not is_xlsxwriter:
         raise ValueError(
-            'Only openpyxl and xlsxwriter are supported as backends, not ' +
+            "Only openpyxl and xlsxwriter are supported as backends, not " +
             writer_type)
     sheet = writer.sheets[sheet_name]
     # Compute & set column width for each column
     for column_name in df.columns:
         # Convert the value of the columns to string and select the
-        column_length = max(df[column_name].apply(to_str).map(find_length).max(), find_length(column_name))
+        column_length = max(
+            df[column_name].apply(to_str).map(find_length).max(),
+            find_length(column_name),
+        )
         # Get index of column in Excel
         # Column index is +1 if we also export the index column
         col_idx = df.columns.get_loc(column_name)
@@ -138,12 +148,17 @@ def auto_adjust_excel_width(
             col_idx += 1
         # Set width of column to (column_length + margin)
         if is_openpyxl:
-            sheet.column_dimensions[openpyxl.utils.cell.get_column_letter(col_idx + 1)].width = column_length * length_factor + margin
+            sheet.column_dimensions[openpyxl.utils.cell.get_column_letter(
+                col_idx + 1)].width = (column_length * length_factor + margin)
         else:
-            sheet.set_column(col_idx, col_idx, column_length * length_factor + margin)
+            sheet.set_column(col_idx, col_idx,
+                             column_length * length_factor + margin)
     if index:  # If the index column is being exported
-        index_length = max(df.index.map(to_str).map(find_length).max(), find_length(df.index.name))
+        index_length = max(
+            df.index.map(to_str).map(find_length).max(),
+            find_length(df.index.name))
         if is_openpyxl:
-            sheet.column_dimensions["A"].width = index_length * length_factor + margin
+            sheet.column_dimensions[
+                "A"].width = index_length * length_factor + margin
         else:
             sheet.set_column(0, 0, index_length * length_factor + margin)
