@@ -8,7 +8,7 @@ from decimal import Decimal
 import openpyxl.utils.cell
 from pandas import ExcelWriter
 
-# pylint: disable=abstract-class-instantiated
+
 def write_in_excel(df, location, sheet, index=False):
     """
     Writes pandas DataFrame in Excel depending on the state of the file
@@ -24,6 +24,7 @@ def write_in_excel(df, location, sheet, index=False):
     """
     try:
         if not os.path.isfile(location):
+            # pylint: disable=abstract-class-instantiated
             writer = ExcelWriter(location, engine="xlsxwriter")  
             df.to_excel(writer, sheet_name=sheet, index=index)
             auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
@@ -42,6 +43,7 @@ def write_in_excel(df, location, sheet, index=False):
                     worksheet.set_column(idx, idx, max_len)  # set column width
                     writer.close()
         else:
+            # pylint: disable=abstract-class-instantiated
             with ExcelWriter(location,
                              mode="a",
                              engine="openpyxl",
