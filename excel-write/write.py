@@ -90,8 +90,7 @@ def find_float_length(v, decimals=3):
     if isinstance(v, float):  # Round to [decimal] places
         return str(
             Decimal(v).quantize(Decimal("1." + "0" * decimals)).normalize())
-    else:
-        return str(v)
+    return str(v)
 
 
 def auto_adjust_excel_width(df,
