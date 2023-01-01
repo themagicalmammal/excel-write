@@ -124,9 +124,7 @@ def auto_adjust_excel_width(df,
     is_openpyxl = writer_type.startswith("openpyxl")
     is_xlsxwriter = writer_type.startswith("xlsxwriter")
     to_str = functools.partial(find_float_length, decimals=decimals)
-    """
-    Like str() but rounds decimals to predefined length
-    """
+    # str() but rounds decimals to predefined length
     if not is_openpyxl and not is_xlsxwriter:
         raise ValueError(
             "Only openpyxl and xlsxwriter are supported as backends, not " +
