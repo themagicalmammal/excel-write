@@ -8,6 +8,7 @@ from decimal import Decimal
 import openpyxl.utils.cell
 from pandas import ExcelWriter
 
+
 # pylint: disable=abstract-class-instantiated
 def write_in_excel(df, location, sheet, index=False):
     """
