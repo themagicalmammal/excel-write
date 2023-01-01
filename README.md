@@ -45,4 +45,4 @@ Go [here](CHANGELOG.md) to checkout the complete changelog.
 
 ## License
 #### This is under MIT License
-[![License: MIT]https://img.shields.io/badge/license-MIT-blue)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
