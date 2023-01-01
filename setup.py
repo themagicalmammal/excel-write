@@ -10,8 +10,10 @@ with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
 
 VERSION = "1.0.0"
 DESCRIPTION = "Optimised way to write in Excel files."
-LONG_DESCRIPTION = "This library optimises the cells in Excel files to fit the text. This feature is not provided by default by pandas and is a important feature. \
-This library also can be used to append excel files without having to worry about engines."
+LONG_DESCRIPTION = "This library optimises the cells in Excel files to fit the text. \
+This feature is not provided by default by pandas and is a important feature. \
+This library also can be used to append excel files without having to worry about \
+engines."
 
 # Setting up
 setup(
