@@ -15,7 +15,7 @@ This feature is not provided by default by pandas and is a important feature. \
 This library also can be used to append excel files without having to worry about \
 engines."
 
-with open('requirements.txt') as f:
+with open("requirements.txt") as f:
     required = f.read().splitlines()
 
 # Setting up
