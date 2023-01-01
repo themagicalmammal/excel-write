@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Description: Simple way to write in Excel
-"""
+"""Description: Simple way to write in Excel"""
 
 import functools
 import os.path
@@ -68,7 +66,6 @@ def find_length(text):
     ```
     :param str text: The text we are checking the length for
     """
-
     if not text:
         return 0
     lines = text.split("\n")
@@ -86,12 +83,10 @@ def find_float_length(v, decimals=3):
     :param float v: The float value we will check the length for
     :param int decimals: The amount of decimal points
     """
-
     if isinstance(v, float):  # Round to [decimal] places
         return str(
             Decimal(v).quantize(Decimal("1." + "0" * decimals)).normalize())
-    else:
-        return str(v)
+    return str(v)
 
 
 def auto_adjust_excel_width(df,
