@@ -50,7 +50,8 @@ def write_in_excel(df, location, sheet, index=False):
                                 if_sheet_exists="replace") as writer:
                 df.to_excel(writer, sheet_name=sheet, index=index)
                 auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
-                # Helps in case if the Excel is already in access mode somewhere else
+                # Helps in case if the Excel is already in access mode
+                # somewhere else
     except PermissionError:
         print(f"Failed to save {location} : Try closing excel doc")
     except Exception as e:
