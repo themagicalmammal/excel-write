@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-Description: Simple way to write in Excel
-"""
+"""Description: Simple way to write in Excel"""
 
 import functools
 import os.path
