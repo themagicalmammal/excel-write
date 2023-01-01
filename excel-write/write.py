@@ -110,10 +110,12 @@ def auto_adjust_excel_width(df,
     :param pd.ExcelWriter writer: The pandas exporter with engine="xlsxwriter"
     :param str sheet_name: The name of the sheet
     :param int margin: How many extra space (beyond the maximum size of the string)
-    :param int length_factor: The factor to apply to the character length to obtain the column width
-    :param int decimals: The number of decimal places to assume for floats: Should be the same as the number of decimals
-    displayed in the Excel
-    :param bool index: Whether the DataFrame's index is inserted as a separate column (if index=False in df.to_xlsx()
+    :param int length_factor: The factor to apply to the character length to obtain
+    the column width
+    :param int decimals: The number of decimal places to assume for floats: Should be
+    the same as the number of decimals displayed in the Excel
+    :param bool index: Whether the DataFrame's index is inserted as a separate column
+    (if index=False in df.to_xlsx()
     set index=False here!)
     """
     writer_type = type(
