@@ -43,7 +43,10 @@ def write_in_excel(df, location, sheet, index=False):
                     worksheet.set_column(idx, idx, max_len)  # set column width
                     writer.close()
         else:
-            with ExcelWriter(location, mode="a", engine="openpyxl", if_sheet_exists="replace") as writer: # pylint: disable=abstract-class-instantiated
+            with ExcelWriter(location,
+                             mode="a",
+                             engine="openpyxl",
+                             if_sheet_exists="replace") as writer:  # pylint: disable=abstract-class-instantiated
                 df.to_excel(writer, sheet_name=sheet, index=index)
                 auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
                 # Helps in case if the Excel is already in access mode
