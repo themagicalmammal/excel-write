@@ -6,7 +6,7 @@ import os.path
 from decimal import Decimal
 
 import openpyxl.utils.cell
-import pandas as pd
+from pandas import ExcelWriter
 
 
 def write_in_excel(df, location, sheet, index=False):
@@ -24,7 +24,7 @@ def write_in_excel(df, location, sheet, index=False):
     """
     try:
         if not os.path.isfile(location):
-            writer = pd.ExcelWriter(location, engine="xlsxwriter")
+            writer = ExcelWriter(location, engine="xlsxwriter")
             df.to_excel(writer, sheet_name=sheet, index=index)
             auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
             worksheet = writer.sheets[sheet]  # pull worksheet object
@@ -42,7 +42,7 @@ def write_in_excel(df, location, sheet, index=False):
                     worksheet.set_column(idx, idx, max_len)  # set column width
                     writer.close()
         else:
-            with pd.ExcelWriter(location,
+            with ExcelWriter(location,
                                 mode="a",
                                 engine="openpyxl",
                                 if_sheet_exists="replace") as writer:
@@ -101,13 +101,13 @@ def auto_adjust_excel_width(df,
 
     How to use:
     ```
-    with pd.ExcelWriter(filename) as writer:
+    with ExcelWriter(filename) as writer:
     df.to_excel(writer, sheet_name="MySheet")
     auto_adjust_column_width_index(df, writer, sheet_name="MySheet", margin=3)
     ```
 
     :param DataFrame df: The DataFrame used to export the Excel
-    :param pd.ExcelWriter writer: The pandas exporter with engine="xlsxwriter"
+    :param ExcelWriter writer: The pandas exporter with engine="xlsxwriter"
     :param str sheet_name: The name of the sheet
     :param int margin: How many extra space (beyond the maximum size of the string)
     :param int length_factor: The factor to apply to the character length to obtain
