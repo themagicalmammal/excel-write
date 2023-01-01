@@ -24,7 +24,7 @@ def write_in_excel(df, location, sheet, index=False):
     """
     try:
         if not os.path.isfile(location):
-            writer = ExcelWriter(location, engine="xlsxwriter")
+            writer = ExcelWriter(location, engine="xlsxwriter") # pylint: disable=abstract-class-instantiated
             df.to_excel(writer, sheet_name=sheet, index=index)
             auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
             worksheet = writer.sheets[sheet]  # pull worksheet object
@@ -45,7 +45,7 @@ def write_in_excel(df, location, sheet, index=False):
             with ExcelWriter(location,
                                 mode="a",
                                 engine="openpyxl",
-                                if_sheet_exists="replace") as writer:
+                                if_sheet_exists="replace") as writer: # pylint: disable=abstract-class-instantiated
                 df.to_excel(writer, sheet_name=sheet, index=index)
                 auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
                 # Helps in case if the Excel is already in access mode
