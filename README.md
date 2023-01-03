@@ -8,7 +8,7 @@ Developed by [Dipan Nanda](https://github.com/themagicalmammal) (c) 2023
 ### write_in_excel
 
 ```python
-from excel-write import write_in_excel
+from excel_write import write_in_excel
 
 write_in_excel(df, location, sheet)
 """
@@ -22,7 +22,7 @@ write_in_excel(df, location, sheet)
 ### auto_adjust_excel_width
 
 ```python
-from excel-write import auto_adjust_excel_width
+from excel_write import auto_adjust_excel_width
 
 auto_adjust_column_width_index(df, writer, sheet_name="MySheet", margin=3)
 
