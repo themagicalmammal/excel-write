@@ -40,8 +40,8 @@ def write_in_excel(df, location, sheet, index=False):
                     )) + 1)  # adding a little extra space
                 if max_len > 50:
                     max_len = 50
-                    worksheet.set_column(idx, idx, max_len)  # set column width
-                    writer.close()
+                worksheet.set_column(idx, idx, max_len)  # set column width
+            writer.close()
         else:
             # pylint: disable=abstract-class-instantiated
             with ExcelWriter(location,
@@ -52,7 +52,7 @@ def write_in_excel(df, location, sheet, index=False):
                 auto_adjust_excel_width(df, writer, sheet_name=sheet, margin=0)
 
     except PermissionError:
-        """Helps in case if the Excel is already in access mode somewhere else"""
+        # Helps in case if the Excel is already in access mode somewhere else
         print(f"Failed to save {location} : Try closing excel doc")
     except Exception as e:
         print(e)
