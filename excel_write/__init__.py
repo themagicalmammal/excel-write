@@ -1,1 +1,1 @@
-from excel_write.write import write_in_excel, auto_adjust_excel_width
+from excel_write.write import auto_adjust_excel_width, write_in_excel

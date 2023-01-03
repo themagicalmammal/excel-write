@@ -25,7 +25,15 @@ setup(
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
     install_requires=required,
-    keywords=["python", "excel", "pandas", "excel-write", "write", "openpyxl", "xlsxwriter"],
+    keywords=[
+        "python",
+        "excel",
+        "pandas",
+        "excel-write",
+        "write",
+        "openpyxl",
+        "xlsxwriter",
+    ],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
