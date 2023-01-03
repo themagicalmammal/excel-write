@@ -1,6 +1,9 @@
 # Excel Write
-Optimised way to write in excel files.
+[![DeepSource](https://deepsource.io/gh/themagicalmammal/excel-write.svg/?label=active+issues&show_trend=true&token=yPj0W7zGmX8xSQoYyXwEpv_e)](https://deepsource.io/gh/themagicalmammal/excel-write/?ref=repository-badge)
+[![DeepSource](https://deepsource.io/gh/themagicalmammal/excel-write.svg/?label=resolved+issues&show_trend=true&token=yPj0W7zGmX8xSQoYyXwEpv_e)](https://deepsource.io/gh/themagicalmammal/excel-write/?ref=repository-badge)
 
+
+Optimised way to write in excel files.
 Developed by [Dipan Nanda](https://github.com/themagicalmammal) (c) 2023
 
 ## Example of Usage
