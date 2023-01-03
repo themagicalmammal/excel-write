@@ -38,8 +38,7 @@ def write_in_excel(df, location, sheet, index=False):
                             len).max(),  # len of largest item
                         len(str(series.name)),  # len of column name/header
                     )) + 1)  # adding a little extra space
-                if max_len > 50:
-                    max_len = 50
+                max_len = min(max_len, 50)
                 worksheet.set_column(idx, idx, max_len)  # set column width
             writer.close()
         else:
