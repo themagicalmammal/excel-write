@@ -46,8 +46,8 @@ index=False in df.to_xlsx() set index=False here!)
 
 
 ## Changelog
-Go [here](https://github.com/themagicalmammal/excel-write/CHANGELOG.md) to checkout the complete changelog.
+Go [here](https://github.com/themagicalmammal/excel-write/blob/main/CHANGELOG.md) to checkout the complete changelog.
 
 ## License
 #### This is under MIT License
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/themagicalmammal/excel-write/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue)](https://github.com/themagicalmammal/excel-write/blob/main/LICENSE)
