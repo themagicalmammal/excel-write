@@ -8,7 +8,7 @@ here = os.path.abspath(os.path.dirname(__file__))
 with codecs.open(os.path.join(here, "README.md"), encoding="utf-8") as fh:
     LONG_DESCRIPTION = "\n" + fh.read()
 
-VERSION = "1.0.3"
+VERSION = "1.0.4"
 DESCRIPTION = "Optimised way to write in Excel files."
 
 with open("requirements.txt") as f:
@@ -25,7 +25,7 @@ setup(
     long_description=LONG_DESCRIPTION,
     packages=find_packages(),
     install_requires=required,
-    keywords=["python", "excel", "pandas", "excel-write", "write"],
+    keywords=["python", "excel", "pandas", "excel-write", "write", "openpyxl", "xlsxwriter"],
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
